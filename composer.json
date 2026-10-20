@@ -1,0 +1,60 @@
+{
+    "name": "sabroan/psr-7",
+    "description": "Strict, minimal PSR-7 implementation.",
+    "license": "MIT",
+    "type": "library",
+    "version": "1.0.0",
+    "keywords": [
+        "psr-7"
+    ],
+    "require": {
+        "php": ">=8.5",
+        "ext-uri": "*",
+        "psr/http-message": "^2.0@dev"
+    },
+    "require-dev": {
+        "ergebnis/composer-normalize": "^2.54",
+        "friendsofphp/php-cs-fixer": "^3.95",
+        "php-http/psr7-integration-tests": "^1.5",
+        "phpstan/extension-installer": "^1.4",
+        "phpstan/phpstan": "^2.3",
+        "phpstan/phpstan-deprecation-rules": "^2.0",
+        "phpstan/phpstan-strict-rules": "^2.1",
+        "phpunit/phpunit": "^12.5",
+        "roave/security-advisories": "dev-latest",
+        "vimeo/psalm": "^7@beta"
+    },
+    "provide": {
+        "psr/http-message-implementation": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sabroan\\Http\\Message\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Sabroan\\Http\\Message\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "scripts": {
+        "check": [
+            "@composer-check",
+            "@cs-check",
+            "@phpstan",
+            "@psalm",
+            "@phpunit"
+        ],
+        "composer-check": "composer normalize",
+        "cs-check": "vendor/bin/php-cs-fixer check --diff",
+        "phpstan": "vendor/bin/phpstan analyse --memory-limit=1G",
+        "phpunit": "vendor/bin/phpunit --testdox --reverse-list --stop-on-failure --display-phpunit-deprecations --display-deprecations --display-warnings --display-phpunit-notices --display-errors --display-all-issues",
+        "psalm": "vendor/bin/psalm"
+    }
+}
